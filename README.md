@@ -9,7 +9,7 @@ Simple build system for HTML5 applications.
 # Boostsrap
 
 ```
-git clone https://github.com/.../js-app-template
+git clone https://github.com/doctb/js-app-template
 cd js-app-template
 npm install
 npm run watch-client-dev
