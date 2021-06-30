@@ -1,0 +1,7 @@
+.placeholder1 {
+  background-color: #fdba40;
+  padding: 20px;
+  border: 7px solid #fc2a62;
+  border-radius: 48px;
+  background-image: url('../assets/bg.png');
+}

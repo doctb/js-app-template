@@ -1,0 +1,62 @@
+{
+  "name": "js-app-template",
+  "version": "1.0.0",
+  "description": "Simple build system for HTML5 apps",
+  "main": "",
+  "scripts": {
+    "preinstall": "node scripts/preinstall.js",
+    "build-client-dev": "node scripts/build-client.js --webpack-config config/client/webpack.config.dev.js --env-name dev",
+    "build-client-staging": "node scripts/build-client.js --webpack-config config/client/webpack.config.staging.js --zip --optimize --clean --env-name staging",
+    "build-client-prod": "node scripts/build-client.js --webpack-config config/client/webpack.config.prod.js --zip --optimize --clean --env-name prod",
+    "serve-client": "npx http-server dist/client/ --cors -p 3001",
+    "watch-client-dev": "concurrently --kill-others \"npm run watch\" \"npm run serve-client\"",
+    "watch": "npm-watch",
+    "lint": "eslint -c config/client/.eslintrc.js ./src/client ./src/shared/"
+  },
+  "watch": {
+    "build-client-dev": {
+      "patterns": [
+        "src/client",
+        "src/shared",
+        "src/assets",
+        "src/clientHardFiles"
+      ],
+      "extensions": "js,html,css,json,png,jpg,jpeg,webp,ico,mp3,wav"
+    }
+  },
+  "author": "https://github.com/doctb",
+  "license": "",
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "archiver": "^5.1.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "chalk": "^4.1.0",
+    "concurrently": "^5.3.0",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.14.0",
+    "file-loader": "^6.2.0",
+    "http-server": "^0.12.3",
+    "husky": "^6.0.0",
+    "ifdef-loader": "^2.1.5",
+    "imagemin": "^7.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-pngquant": "^9.0.1",
+    "npm-watch": "^0.7.0",
+    "slash": "^3.0.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.8.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "dependencies": {
+    "hello-world-npm": "^1.1.1",
+    "simple-test-package": "^0.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}
