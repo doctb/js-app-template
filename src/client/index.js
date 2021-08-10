@@ -2,6 +2,7 @@ import foobar from './foobarJs';                     // local js import
 import foobarJs from '../shared/foobarJs';           // shared js import
 import foobarJson from '../shared/foobarJson.json';  // shared json import
 import simpleTestPackage from 'simple-test-package'; // 3rd party module import
+import http from 'http';                             // node core module (testing browser polyfill)
 import './foobarCss.css';                            // css import
 
 window.addEventListener('load', () => {
@@ -33,6 +34,12 @@ window.addEventListener('load', () => {
   /// #elif IS_PRODUCTION
   console.log('This is a production build');
   /// #endif
+
+  // testing node core module import
+  console.log('http:', http);
+
+  // testing environment variables
+  console.log('process.env.foo =', process.env.foo);
 
   // tesing dynamic imports
   import(/* webpackChunkName: "hello-world-npm" */ 'hello-world-npm').then((module) => {

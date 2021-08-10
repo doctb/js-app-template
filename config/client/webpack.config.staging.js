@@ -1,4 +1,8 @@
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const webpack = require('webpack');
 const path = require('path');
+
+const MODE = 'production';
 
 module.exports = {
   entry: path.resolve(__dirname, '../../src/client/index.js'),
@@ -7,7 +11,15 @@ module.exports = {
     path: path.resolve(__dirname, '../../dist/client/'),
   },
   watch: false,
-  mode: 'production',
+  mode: MODE,
+	plugins: [
+		new NodePolyfillPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'foo': JSON.stringify('bar')
+      }
+    })
+	],
   module : {
     rules : [
 
