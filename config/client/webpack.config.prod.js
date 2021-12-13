@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const webpack = require('webpack');
 const path = require('path');
@@ -7,7 +8,8 @@ const MODE = 'production';
 module.exports = {
   entry: path.resolve(__dirname, '../../src/client/index.js'),
   output: {
-    filename: 'index.js',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].bundle.js',
     path: path.resolve(__dirname, '../../dist/client/'),
   },
   watch: false,
@@ -18,6 +20,9 @@ module.exports = {
       'process.env': {
         'foo': JSON.stringify('bar')
       }
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../../src/webpackTemplate/index.html')
     })
 	],
   module : {
